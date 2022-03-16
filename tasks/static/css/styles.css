@@ -24,6 +24,11 @@ container-fluid {
 
 /* Botao de adicionar */
 
+#add-link {
+    text-decoration: none;
+}
+
+
 .add-div {
     background-color: #3476ea;
     cursor: pointer;
