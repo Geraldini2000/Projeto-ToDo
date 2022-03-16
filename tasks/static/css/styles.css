@@ -53,6 +53,7 @@ container-fluid {
     position: absolute;
     top: 12px;
     right: 26px;
+    cursor: pointer;
 }
 
 .search-div {
