@@ -1,7 +1,7 @@
-from re import search
-from turtle import title
+
 
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
@@ -10,6 +10,7 @@ from .forms import TaskForm
 from .models import Task
 
 
+@login_required
 def tasksList(request):
 
     search = request.GET.get('search')
@@ -31,11 +32,13 @@ def tasksList(request):
     return render(request, 'tasks/list.html', {'tasks': tasks})
 
 
+@login_required
 def taskView(request, id):
     task = get_object_or_404(Task, pk=id)
     return render(request, 'tasks/task.html', {'task': task})
 
 
+@login_required
 def newTask(request):
     if request.method == 'POST':
         form = TaskForm(request.POST)
@@ -50,6 +53,7 @@ def newTask(request):
         return render(request, 'tasks/addtask.html', {'form': form})
 
 
+@login_required
 def editTask(request, id):
     task = get_object_or_404(Task, pk=id)
     form = TaskForm(instance=task)
@@ -66,6 +70,7 @@ def editTask(request, id):
         return render(request, 'tasks/edittask.html', {'form': form, 'task': task})
 
 
+@login_required
 def deleteTask(request, id):
     task = get_object_or_404(Task, pk=id)
     task.delete()
